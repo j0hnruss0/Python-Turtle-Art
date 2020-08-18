@@ -1,3 +1,5 @@
+"""Turtle module based program that creates an image of a scene on the beach. Colors
+   are somewhat random for the background but each image created is otherwise identical"""
 import turtle
 import random
 from turtle import Turtle, Screen
@@ -6,6 +8,7 @@ screen = Screen()
 screen.colormode(255)
 
 def make_block(outline, fill, x, y, height):
+    """Function to create the basic square shape that composes most of the image"""
     block = Turtle()
     block.speed(0)
     block.pensize(1)
@@ -23,7 +26,7 @@ def make_block(outline, fill, x, y, height):
         block.right(90)
     block.end_fill()
 
-    
+#The following two functions create the sky portion of the image    
 def make_sky_row(pos_x, pos_y, height):
     for i in range(24):
         make_block((0, 255, 255),(random.randint(100, 255), 255, 241), pos_x, pos_y, height)
@@ -39,6 +42,7 @@ def make_sunny_row(pos_x, pos_y, height):
         pos_x += 25
         sun_index += 1
 
+# The next two functions handle the sea and the beach images
 def make_sea_row(pos_x, pos_y, height):
     for j in range(24):
         make_block((0, 66, 209), (50, random.randint(0, 150), 209), pos_x, pos_y, height)
@@ -51,6 +55,7 @@ def make_beach_row(pos_x, pos_y, height):
         pos_x += 25
 
 def make_sky(pos_x, pos_y, height):
+    """Primary function to create the sky scene"""
     sky_row = 0
     for k in range(19):
         if sky_row < 15:
@@ -62,18 +67,21 @@ def make_sky(pos_x, pos_y, height):
         height += 1
 
 def make_sea(pos_x, pos_y, height):
+    """Primary function to create the sea scene"""
     for el in range(13):
         make_sea_row(pos_x, pos_y, height)
         pos_y -= height
         height +=1
 
 def make_beach(pos_x, pos_y, height):
+    """Primary function to create the beach scene"""
     for n in range(5):
         make_beach_row(pos_x, pos_y, height)
         pos_y -= height
         height += 1
 
 def tree_trunk(x, y, width_1, width_2):
+    """Constructs a three-sectored block as part of a palm tree foreground image"""
     tree = Turtle()
     tree.color((89, 40, 29), (193, 86, 62))
     tree.penup()
@@ -113,6 +121,7 @@ def tree_trunk(x, y, width_1, width_2):
     tree.hideturtle()
 
 def tree_whole(pos_x, pos_y, width_1, width_2):
+    """Creates the trunk of the foreground palm tree"""
     for x in range(6):
         tree_trunk(pos_x, pos_y, width_1, width_2)
         pos_x -= 5
@@ -121,6 +130,7 @@ def tree_whole(pos_x, pos_y, width_1, width_2):
         width_2 -=1
 
 def tree_leaves(start):
+    """Draws the leaves and branches of the foreground palm tree"""
     pos_x = 155
     pos_y = 130
     stem = Turtle()
@@ -157,6 +167,8 @@ def tree_leaves(start):
     stem.hideturtle()
 
 def leaf_pair(pos_x, pos_y, angle_1, angle_2):
+    """Draws the leaves specifically, takes in different angle imputs 
+       relative to the branches"""
     leaf = Turtle()
     leaf.penup()
     leaf.setpos(pos_x, pos_y)
@@ -187,7 +199,9 @@ def leaf_pair(pos_x, pos_y, angle_1, angle_2):
         
 
 def main():
-    
+    """The entirety of the images created by the functions in the following order.
+       The tree_named functions must come after the _sky, _sea, and_beach functions,
+       as they will be drawn over the background, the tree_leaves functions are always last"""
     make_sky(-300, 10, 5)
     make_sea(-300, 5, 5)
     make_beach(-300, -138, 18)
