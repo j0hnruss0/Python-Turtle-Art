@@ -1,3 +1,5 @@
+"""Turtle module program that creates a semi-random abstract image containing gem-shaped
+   blocks and bands. No two images created are alike"""
 import turtle
 import random
 from turtle import Turtle, Screen
@@ -6,6 +8,8 @@ screen = Screen()
 screen.colormode(255)
 
 def diamond_square(pos_x, pos_y, size_set):
+    """Creates the gem-shaped blocks for the foreground bands.
+       Colors are changed using the color_change function input"""
     color_counter = 0
     alpha = turtle.Turtle()
     alpha.color('black')
@@ -45,6 +49,8 @@ def diamond_square(pos_x, pos_y, size_set):
     alpha.end_fill()
 
 def background_block(pos_x, pos_y):
+    """Creates the background scene of green-toned bricks. Color is
+       slightly altered for each brick"""
     beta = Turtle()
     beta.color((0, 51, 51))
     beta.pensize(1)
@@ -62,13 +68,14 @@ def background_block(pos_x, pos_y):
         beta.forward(15)
         beta.right(90)
     beta.end_fill()
-        
-    
+                
 def background_row(pos_x, pos_y):
+    """Creates one row for the background scene"""
     for y in range(30):
         background_block(pos_x, pos_y)
         pos_x += 30
 
+# The following two functions create the horizontal and verticle bands of the foreground
 def make_rows(pos_x, pos_y, size_set):
     for x in range(90 - size_set):
         diamond_square(pos_x, pos_y, size_set)
@@ -80,8 +87,9 @@ def make_columns(pos_x, pos_y, size_set):
         diamond_square(pos_x, pos_y, size_set)
         pos_y += size_set
     
-
 def color_change(counter):
+    """Semi-randomizes the colors used for the foreground gem-blocks. The colors
+       use the rgb-scale and are various shades and tints of yellow and purple"""
     use_color = ''
     if counter == 0:
         use_color = (255, 255, random.randint(0, 100))
@@ -99,12 +107,16 @@ def color_change(counter):
     return use_color
 
 def background_full(pos_x, pos_y):
+    """Creates the entirety of the background pattern"""
     for z in range(21):
         background_row(pos_x, pos_y)
         background_row(pos_x + 15, pos_y - 15)
         pos_y -= 30
 
 def make_bands():
+    """This final functions alternately creates rows and columns of the gem-shaped
+       squares for the background. Five rows and columns are made each, the width
+       of each row/column is random"""
     for k in range(5):
         make_rows(-350, random.randint(-250, 250), random.randint(20, 80))
         make_columns(random.randint(-250, 250), -300, random.randint(20, 80))
