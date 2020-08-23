@@ -19,7 +19,7 @@ def make_block(outline, fill, x, y, height):
     block.hideturtle()
 
     block.begin_fill()
-    for x in range(2):
+    for all in range(2):
         block.forward(25)
         block.right(90)
         block.forward(height)
@@ -28,13 +28,13 @@ def make_block(outline, fill, x, y, height):
 
 #The following two functions create the sky portion of the image    
 def make_sky_row(pos_x, pos_y, height):
-    for i in range(24):
+    for all in range(24):
         make_block((0, 255, 255),(random.randint(100, 255), 255, 241), pos_x, pos_y, height)
         pos_x += 25
 
 def make_sunny_row(pos_x, pos_y, height):
     sun_index = 0
-    for h in range(24):
+    for all in range(24):
         if sun_index < 4:
             make_block((0, 255, 255),(236, 240, random.randint(0, 150)), pos_x, pos_y, height)
         elif sun_index >= 4:
@@ -44,12 +44,12 @@ def make_sunny_row(pos_x, pos_y, height):
 
 # The next two functions handle the sea and the beach images
 def make_sea_row(pos_x, pos_y, height):
-    for j in range(24):
+    for all in range(24):
         make_block((0, 66, 209), (50, random.randint(0, 150), 209), pos_x, pos_y, height)
         pos_x += 25
 
 def make_beach_row(pos_x, pos_y, height):
-    for m in range(24):
+    for all in range(24):
         beach_color = (random.randint(230, 250), random.randint(150, 250), random.randint(10, 130))
         make_block((255, 187, 15), beach_color ,pos_x, pos_y, height)
         pos_x += 25
@@ -57,7 +57,7 @@ def make_beach_row(pos_x, pos_y, height):
 def make_sky(pos_x, pos_y, height):
     """Primary function to create the sky scene"""
     sky_row = 0
-    for k in range(19):
+    for all in range(19):
         if sky_row < 15:
             make_sky_row(pos_x, pos_y, height)
         elif sky_row >= 15:
@@ -68,14 +68,14 @@ def make_sky(pos_x, pos_y, height):
 
 def make_sea(pos_x, pos_y, height):
     """Primary function to create the sea scene"""
-    for el in range(13):
+    for all in range(13):
         make_sea_row(pos_x, pos_y, height)
         pos_y -= height
         height +=1
 
 def make_beach(pos_x, pos_y, height):
     """Primary function to create the beach scene"""
-    for n in range(5):
+    for all in range(5):
         make_beach_row(pos_x, pos_y, height)
         pos_y -= height
         height += 1
@@ -88,7 +88,7 @@ def tree_trunk(x, y, width_1, width_2):
     tree.setpos(x, y)
     tree.pendown()
     tree.begin_fill()
-    for x in range(2):
+    for all in range(2):
         tree.forward(width_1)
         tree.right(90)
         tree.forward(50)
@@ -100,7 +100,7 @@ def tree_trunk(x, y, width_1, width_2):
     tree.pendown()
     tree.color((89, 40, 29),(214, 144, 128))
     tree.begin_fill()
-    for x in range(2):
+    for all in range(2):
         tree.forward(width_2)
         tree.right(90)
         tree.forward(50)
@@ -112,7 +112,7 @@ def tree_trunk(x, y, width_1, width_2):
     tree.pendown()
     tree.color((89, 40, 29), (193, 86, 62))
     tree.begin_fill()
-    for x in range(2):
+    for all in range(2):
         tree.forward(width_1)
         tree.right(90)
         tree.forward(50)
@@ -122,7 +122,7 @@ def tree_trunk(x, y, width_1, width_2):
 
 def tree_whole(pos_x, pos_y, width_1, width_2):
     """Creates the trunk of the foreground palm tree"""
-    for x in range(6):
+    for all in range(6):
         tree_trunk(pos_x, pos_y, width_1, width_2)
         pos_x -= 5
         pos_y +=50
@@ -140,7 +140,7 @@ def tree_leaves(start):
     
     stem.color((5, 112, 7))
     stem.right(start)
-    for x in range(10):
+    for all in range(10):
         stem.forward(15)
         if start % 45 == 0:
             if start > 0 and start <= 90:
